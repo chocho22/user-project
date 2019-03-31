@@ -1,0 +1,6 @@
+190331
+*로그인 페이지 유효성 검사까지 완료
+->movie_info 테이블 만들고
+->MovieServlet까지 만들어야 함
+
+*user update,delete,select,selectList까지 다 채우기
