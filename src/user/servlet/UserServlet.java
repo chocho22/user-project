@@ -44,31 +44,30 @@ public class UserServlet extends HttpServlet {
 			if (us.insertUser(user) == 1) {
 				request.setAttribute("msg", "가입 완료");
 				request.setAttribute("uri", "/user/login.jsp");
-				RequestDispatcher rd = request.getRequestDispatcher("/user/join_ok.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/msg/result.jsp");
 				rd.forward(request, response);
 			}
 		} else if ("login".equals(cmd)) {
 			String uiId = request.getParameter("ui_id");
 			String uiPwd = request.getParameter("ui_pwd");
 			Map<String, String> user = us.login(uiId);
+			request.setAttribute("msg", "비밀번호를 다시 확인해주세요.");
+			request.setAttribute("uri", "/user/login.jsp");
 			if (user != null) {
-				if(user.get("ui_pwd")==uiPwd) {
-					HttpSession session = request.getSession();
-					session.setAttribute("logonUser", user);
-					response.sendRedirect("/movie/list.jsp");
-					return;
-				} else {
-					request.setAttribute("msg", "비밀번호를 다시 확인해주세요.");
-					request.setAttribute("uri", "/user/login.jsp");
-					RequestDispatcher rd = request.getRequestDispatcher("/user/login_den.jsp");
-					rd.forward(request, response);
-				}
-			} else {
-				request.setAttribute("msg", "아이디나 비밀번호를 다시 확인해주세요.");
-				request.setAttribute("uri", "/user/login.jsp");
-				RequestDispatcher rd = request.getRequestDispatcher("/user/login_den.jsp");
-				rd.forward(request, response);
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				request.setAttribute("msg", "로그인 성공");
+				request.setAttribute("uri", "/views/movie/list");
 			}
+			RequestDispatcher rd = request.getRequestDispatcher("/msg/result.jsp");
+			rd.forward(request, response);
+		} else if ("logout".equals(cmd)) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			request.setAttribute("msg", "로그아웃 되었습니다.");
+			request.setAttribute("url", "/user/login");
+			RequestDispatcher rd = request.getRequestDispatcher("/msg/result.jsp");
+			rd.forward(request, response);
 		}
 	}
 }

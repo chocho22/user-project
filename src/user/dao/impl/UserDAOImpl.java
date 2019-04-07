@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import db.DBCon;
 import user.dao.UserDAO;
-import user.db.DBCon;
 
 public class UserDAOImpl implements UserDAO {
 	private String insertUser = "insert into user_info " +

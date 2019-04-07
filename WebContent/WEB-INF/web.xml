@@ -22,4 +22,12 @@
     <servlet-name>MovieServlet</servlet-name>
     <url-pattern>/movie/*</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>ViewResolverServlet</servlet-name>
+    <servlet-class>servlet.ViewResolverServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewResolverServlet</servlet-name>
+    <url-pattern>/views/*</url-pattern>
+  </servlet-mapping>
 </web-app>

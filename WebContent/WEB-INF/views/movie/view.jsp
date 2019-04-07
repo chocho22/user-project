@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>가입 완료</title>
+<title>Insert title here</title>
 </head>
 <body>
-<script>
-alert('${msg}');
-location.href='${uri}';
-</script>
+
 </body>
 </html>

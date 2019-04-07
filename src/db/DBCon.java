@@ -1,4 +1,4 @@
-package user.db;
+package db;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,9 +12,11 @@ public class DBCon {
 	private static final String USER;
 	private static final String PASSWORD;
 	private static final String CLASS_NAME;
+	private static Connection con = null;
+
 	static {
-		InputStream is = DBCon.class.getResourceAsStream("/user/config/db.properties");
 		Properties prop = new Properties();
+		InputStream is = DBCon.class.getResourceAsStream("/config/config.properties");
 		try {
 			prop.load(is);
 		} catch (IOException e) {
@@ -25,22 +27,17 @@ public class DBCon {
 		PASSWORD = prop.getProperty("password");
 		CLASS_NAME = prop.getProperty("classname");
 	}
-	private static Connection con = null;
-	
-	private static void open() {
-		try {
-			Class.forName(CLASS_NAME);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
+
 	public static Connection getCon() {
-		if(con==null) {
-			open();
+		if (con == null) {
+			try {
+				Class.forName(CLASS_NAME);
+				con = DriverManager.getConnection(URL, USER, PASSWORD);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return con;
 	}

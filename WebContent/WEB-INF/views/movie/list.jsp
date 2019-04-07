@@ -8,10 +8,15 @@
 <title>영화 리스트</title>
 </head>
 <body>
-영화 리스트를 만들자!
-${param.board_title}리스트<br>
-<c:forEach items="${list}" var="row">
-	번호 : ${row.num}, 제목 : ${row.title} <br>
+영화 리스트
+<br>
+<c:forEach items="${movieList}" var="row">
+	번호 : ${row.miNum}, 
+	제목 : ${row.miName}, 
+	개봉년도 : ${row.miYear}, 
+	국가 : ${row.miNational},
+	제작사 : ${row.miVendor}, 
+	감독 : ${row.miDirector}<br>
 </c:forEach>
 </body>
 </html>

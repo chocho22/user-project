@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 오류</title>
+<title></title>
 </head>
 <body>
 <script>
