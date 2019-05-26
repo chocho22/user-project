@@ -11,11 +11,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 
 public class Command {
 	private static final String RESULT_PATH = "/msg/result.jsp";
-	private static final Gson JSON = new Gson();
+//	private static final Gson JSON = new Gson();
 
 	public static String getCmd(HttpServletRequest request) throws ServletException {
 		String uri = request.getRequestURI();
@@ -61,6 +60,6 @@ public class Command {
 	public static <T> void printJSON(HttpServletResponse response, T obj) throws IOException {
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter pw = response.getWriter();
-		pw.print(JSON.toJson(obj));
+//		pw.print(JSON.toJson(obj));
 	}
 }
